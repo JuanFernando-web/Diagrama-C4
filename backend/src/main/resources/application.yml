@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: consulta-vehicular
+  data:
+    redis:
+      # Redis Cloud / Upstash: rediss://default:PASSWORD@HOST:PORT  (rediss = TLS)
+      url: ${REDIS_URL:redis://localhost:6379}
+      timeout: 2s
+      connect-timeout: 2s
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  sri:
+    timeout-ms: 8000
+  ant:
+    timeout-ms: 5000
+    cache:
+      fresh-seconds: 600   # dentro de este tiempo se responde desde cache sin consultar la ANT
+      ttl-days: 30         # tiempo maximo que se conserva el dato para respaldo si la ANT cae
